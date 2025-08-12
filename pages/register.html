@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id" x-data="{ showPassword: false }">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - Mengaji</title>
+
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-gray-50 flex flex-col items-center justify-center min-h-screen font-sans">
+
+  <!-- Return Home -->
+  <div class="absolute top-4 left-4 text-sm text-gray-500 flex items-center gap-1 cursor-pointer">
+    <span>&larr;</span> Return Home
+  </div>
+
+  <!-- Login Link -->
+  <div class="absolute top-4 right-4 text-sm text-gray-500">
+    Sudah Jadi Member? <a href="login.html" class="font-semibold text-black hover:underline">LOGIN DISINI</a>
+  </div>
+
+  <!-- Register Card -->
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center mb-2">Gabung Kelas Mengaji Online</h2>
+    <p class="text-center text-gray-500 mb-6">DAFTAR SEKARANG DAN MULAI PERJALANAN MENGAJI ANDA.</p>
+
+    <!-- Nama -->
+    <div class="mb-4">
+      <div class="flex items-center border border-gray-300 rounded-lg px-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A4 4 0 0112 15a4 4 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        <input type="text" placeholder="Johnson Doe" class="w-full px-3 py-2 focus:outline-none rounded-lg" />
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="mb-4">
+      <div class="flex items-center border border-gray-300 rounded-lg px-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0l4 4m-4-4l4-4" />
+        </svg>
+        <input type="email" placeholder="example@email.com" class="w-full px-3 py-2 focus:outline-none rounded-lg" />
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="mb-6">
+      <div class="flex items-center border border-gray-300 rounded-lg px-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.105-.895 2-2 2s-2-.895-2-2 2-4 2-4 2 2.895 2 4zM5 20h14v-1a7 7 0 00-14 0v1z" />
+        </svg>
+        <input :type="showPassword ? 'text' : 'password'" placeholder="********" class="w-full px-3 py-2 focus:outline-none rounded-lg" />
+        <button type="button" @click="showPassword = !showPassword" class="text-xs text-gray-500">
+          <span x-text="showPassword ? 'HIDE' : 'SHOW'"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button class="w-full bg-indigo-900 hover:bg-indigo-800 text-white py-3 rounded-lg flex justify-center items-center gap-2">
+      Daftar Sekarang
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <div class="absolute bottom-4 left-4 text-xs text-gray-400">
+    Copyright 2021 - 2022 FoxHub Inc. All rights Reserved
+  </div>
+
+  <!-- Help -->
+  <div class="absolute bottom-4 right-4 flex items-center gap-1 text-xs text-gray-500 cursor-pointer">
+    <span class="italic">i</span> Butuh Bantuan?
+  </div>
+
+</body>
+</html>
