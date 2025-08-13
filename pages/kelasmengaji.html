@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Program Kelas Mengaji</title>
+  <link rel="stylesheet" href="../src/css/kelasmengaji.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <img src="../assets/images/logo.png" alt="Logo" class="logo">
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Campaign</a>
+        <a href="#">Kelas</a>
+        <a href="#">Donate</a>
+        <img src="../assets/images/logo.png" alt="Profile" class="profile-pic">
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-container">
+      <p>
+        Pilih <span class="bold">Kelas Mengaji</span> dan mulai perjalanan Belajar Al-
+        <span class="bold">Qur’an</span> yang bermakna bagi Anda.
+      </p>
+    </div>
+    <div class="hero-btn-container">
+      <button class="hero-btn">Semua Kelas</button>
+    </div>
+  </section>
+
+  <!-- Program -->
+  <section class="program">
+    <h2>PROGRAM KELAS MENGAJI</h2>
+    <p class="subtext">Pilih kelas mengaji yang diinginkan</p>
+
+    <div class="grid">
+      <template x-data="{ cards: Array(8).fill(0) }" x-for="(card, i) in cards" :key="i">
+        <div class="card">
+          <div class="poster"><img src="../assets/images/buku.png" alt="Foto Poster Pengajian"></div>
+          <div class="card-info">
+            <div class="card-upper-container">
+              <h3>Kelas Tahsin</h3>
+              <div class="badge">Baru</div>
+            </div>
+            <div class="card-bottom-container">
+              <div class="card-description">
+                <p class="card-program">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                <p class="ustadz">Ust. Heny Saputra</p>
+              </div>
+              <div class="card-button">
+                <button class="join-btn">Ikuti Kelas</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <div class="footer-logo">
+          <img src="../assets/images/image.png" alt="Logo" class="logo">
+          <h4>PENGAJIAN ONLINE</h4>
+        </div>
+        <p>PengajianOnline.id adalah platform resmi pengajian daring Masjid Darussalam Kota Wisata,
+          untuk memudahkan jamaah mengikuti kajian Islam secara rutin, mudah, dan terpercaya.
+        </p>
+      </div>
+      <div class="footer-actions">
+        <div class="socials">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok"></i></a>
+          <a href=""><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <button class="contact-btn">HUBUNGI KAMI</button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
