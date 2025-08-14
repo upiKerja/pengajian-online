@@ -36,6 +36,30 @@
                 <a href="login.html" class="btn btn-primary">Masuk</a>
                 <a href="register.html" class="btn btn-secondary">Daftar</a>
             </div>
+
+            <!-- BUTTON HAMBURGER -->
+            <button
+            id="hamburger"
+            class="hamburger"
+            aria-label="Toggle menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            >
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            </button>
+
+            <!-- (Opsional) TARGET MENU -->
+            <nav id="mobile-menu" class="menu hidden" role="navigation">
+                <!-- Menu -->
+                <a href="login.html" class="btn btn-primary">Masuk</a>
+                <a href="register.html" class="btn btn-secondary">Daftar</a>
+                <a href="#Home" class="nav-link">Home</a>
+                <a href="#"class="nav-link">About</a>
+                <a href="#" class="nav-link">Campaigns</a>
+                <a href="#" class="nav-link">Contact</a>
+            </nav>
         </div>
     </header>
 
@@ -167,5 +191,17 @@
             </div>
         </div>
     </footer>
+    <script>
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+
+    btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    btn.classList.toggle('active');
+    if (menu) menu.classList.toggle('hidden');
+    });
+
+    </script>
 </body>
 </html>
