@@ -8,13 +8,16 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../src/js/index.js"></script>
     <link rel="stylesheet" href="../src/css/index.css">
+    <script>
+        let authenticated = false
+    </script>
 </head>
-<body>
+<body x-data="{auth: authenticated, guess: authenticated == false}">
     <!-- Header -->
     <header class="header" id="header">
         <div class="header-container">
             <!-- Logo -->
-            <div class="logo">
+            <div class="logo" x-show="true">
                 <img src="../assets/images/logo.png" alt="DonasiKu Logo">
             </div>
             
@@ -32,10 +35,12 @@
             </nav>
 
             <!-- Buttons -->
-            <div class="btn-group">
+            <div class="btn-group" x-show="guess">
                 <a href="login.html" class="btn btn-primary">Masuk</a>
                 <a href="register.html" class="btn btn-secondary">Daftar</a>
             </div>
+
+            <h1 x-show="auth" style="color: black;">Ini Udah login</h1>
 
             <!-- BUTTON HAMBURGER -->
             <button
