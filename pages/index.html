@@ -9,10 +9,10 @@
     <script src="../src/js/index.js"></script>
     <link rel="stylesheet" href="../src/css/index.css">
     <script>
-        let authenticated = false
+    let authenticated;
     </script>
 </head>
-<body x-data="{auth: authenticated, guess: authenticated == false}">
+<body x-data="{auth: authenticated ? true : false}">
     <!-- Header -->
     <header class="header" id="header">
         <div class="header-container">
@@ -35,12 +35,10 @@
             </nav>
 
             <!-- Buttons -->
-            <div class="btn-group" x-show="guess">
+            <div class="btn-group" x-show="!auth">
                 <a href="login.html" class="btn btn-primary">Masuk</a>
                 <a href="register.html" class="btn btn-secondary">Daftar</a>
             </div>
-
-            <h1 x-show="auth" style="color: black;">Ini Udah login</h1>
 
             <!-- BUTTON HAMBURGER -->
             <button
