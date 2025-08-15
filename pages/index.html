@@ -9,7 +9,13 @@
     <script src="../src/js/index.js"></script>
     <link rel="stylesheet" href="../src/css/index.css">
     <script>
-    let authenticated;
+    let authenticated = true;
+
+    async function pernah() {
+        console.log("Rijal~")
+        let kata = await axios.get("https://httpbin.org/get")
+        return kata.data.origin
+    }
     </script>
 </head>
 <body x-data="{auth: authenticated ? true : false}">
@@ -17,10 +23,10 @@
     <header class="header" id="header">
         <div class="header-container">
             <!-- Logo -->
-            <div class="logo" x-show="true">
+            <div class="logo">
                 <img src="../assets/images/logo.png" alt="DonasiKu Logo">
             </div>
-            
+            <h1 style="color: black;"></h1>
             <!-- Nav -->
             <nav class="nav">
                 <!-- Bell -->
@@ -55,9 +61,11 @@
 
             <!-- (Opsional) TARGET MENU -->
             <nav id="mobile-menu" class="menu hidden" role="navigation">
-                <!-- Menu -->
-                <a href="login.html" class="btn btn-primary">Masuk</a>
-                <a href="register.html" class="btn btn-secondary">Daftar</a>
+                <div x-show="!auth">
+                    <a href="login.html" class="btn btn-primary">Masuk</a>
+                    <a href="register.html" class="btn btn-secondary">Daftar</a>
+                </div>
+                <a href="#" x-show="auth">Profile</a>
                 <a href="#Home" class="nav-link">Home</a>
                 <a href="#"class="nav-link">About</a>
                 <a href="#" class="nav-link">Campaigns</a>
