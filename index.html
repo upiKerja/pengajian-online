@@ -6,19 +6,12 @@
     <title>DonasiKu - Platform Donasi Terpercaya</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../src/js/index.js"></script>
+    <script src="src/js/index.js"></script>
     <link rel="stylesheet" href="../src/css/index.css">
-    <script>
-    let authenticated = true;
+    <script src="/src/js/auth.js"></script>
 
-    async function pernah() {
-        console.log("Rijal~")
-        let kata = await axios.get("https://httpbin.org/get")
-        return kata.data.origin
-    }
-    </script>
 </head>
-<body x-data="{auth: authenticated ? true : false}">
+<body x-data="{auth: window.rijal ? true : false}">
     <!-- Header -->
     <header class="header" id="header">
         <div class="header-container">
