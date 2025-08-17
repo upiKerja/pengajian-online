@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     async function get_kelas() {
-      let data = await axios.get("https://test.lahanjir.biz.id/kelas/cari?q=dan", { withCredentials: true })
+      let data = await axios.get("https://test.lahanjir.biz.id/kelas/discover", { withCredentials: true })
       return data.data
     }
   </script>
@@ -35,7 +35,7 @@
     <div class="hero-container">
       <p>
         Pilih <span class="bold">Kelas Mengaji</span> dan mulai perjalanan Belajar Al-
-        <span class="bold">Qur’an</span> yang bermakna bagi Anda.
+        <span class="bold">Quran</span> yang bermakna bagi Anda.
       </p>
     </div>
     <div class="hero-btn-container">
@@ -48,7 +48,7 @@
     <h2>PROGRAM KELAS MENGAJI</h2>
     <p class="subtext">Pilih kelas mengaji yang diinginkan</p>
     <div>
-      <div class="grid" x-show="(await kelass).status == 'success' ? true : false">
+      <div class="grid" x-show="(await kelass).status == 200 ? true : false">
         <template x-for="kelas in (await kelass).data">
           <div class="card">
             <div class="poster"><img src="../assets/images/buku.png" alt="Foto Poster Pengajian"></div>
@@ -70,7 +70,7 @@
           </div>
         </template>
       </div>
-      <div class="gagal" x-show="(await kelass).status !== 'success' ? true : false">
+      <div class="gagal" x-show="(await kelass).status !== 200 ? true : false">
         <h1>Loading..</h1>
         <h3>Fetching Data...</h3>
       </div>
