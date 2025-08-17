@@ -6,6 +6,13 @@
   <title>Program Kelas Mengaji</title>
   <link rel="stylesheet" href="../src/css/kelasmengaji.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function get_kelas() {
+      let data = await axios.get("https://test.lahanjir.biz.id/kelas/cari?q=dan", { withCredentials: true })
+      return data.data
+    }
+  </script>
 </head>
 <body>
 
@@ -37,31 +44,36 @@
   </section>
 
   <!-- Program -->
-  <section class="program">
+  <section class="program" x-data="{kelass: get_kelas()}">
     <h2>PROGRAM KELAS MENGAJI</h2>
     <p class="subtext">Pilih kelas mengaji yang diinginkan</p>
-
-    <div class="grid">
-      <template x-data="{ cards: Array(8).fill(0) }" x-for="(card, i) in cards" :key="i">
-        <div class="card">
-          <div class="poster"><img src="../assets/images/buku.png" alt="Foto Poster Pengajian"></div>
-          <div class="card-info">
-            <div class="card-upper-container">
-              <h3>Kelas Tahsin</h3>
-              <div class="badge">Baru</div>
-            </div>
-            <div class="card-bottom-container">
-              <div class="card-description">
-                <p class="card-program">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
-                <p class="ustadz">Ust. Heny Saputra</p>
+    <div>
+      <div class="grid" x-show="(await kelass).status == 'success' ? true : false">
+        <template x-for="kelas in (await kelass).data">
+          <div class="card">
+            <div class="poster"><img src="../assets/images/buku.png" alt="Foto Poster Pengajian"></div>
+            <div class="card-info">
+              <div class="card-upper-container">
+                <h3 x-text="kelas.judul"></h3>
+                <div class="badge">Baru</div>
               </div>
-              <div class="card-button">
-                <button class="join-btn">Ikuti Kelas</button>
+              <div class="card-bottom-container">
+                <div class="card-description">
+                  <p class="card-program" x-text="kelas.deskripsi">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                  <p class="ustadz" x-text="kelas.pengguna.nama_lengkap">Ust. Heny Saputra</p>
+                </div>
+                <div class="card-button">
+                  <button class="join-btn">Ikuti Kelas</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </template>
+        </template>
+      </div>
+      <div class="gagal" x-show="(await kelass).status !== 'success' ? true : false">
+        <h1>Loading..</h1>
+        <h3>Fetching Data...</h3>
+      </div>
     </div>
   </section>
 
