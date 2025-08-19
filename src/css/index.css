@@ -685,15 +685,6 @@ body {
         cursor: pointer;
         padding: 0.5rem;
     }
-    
-    .banner-text h1 {
-        font-size: 2rem;
-    }
-    
-    .banner-text p {
-        font-size: 1rem;
-    }
-    
     .stats-section {
         gap: 1.5rem;
         margin: 2rem 0;
@@ -728,11 +719,6 @@ body {
     .banner-section {
         height: 60vh;
     }
-    
-    .banner-text h1 {
-        font-size: 1.5rem;
-    }
-    
     .stat-number {
         font-size: 1.5rem;
     }
@@ -779,19 +765,6 @@ body {
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --white: #1a1a1a;
-        --gray-light: #2a2a2a;
-        --gray-dark: #e5e5e5;
-    }
-    
-    .header {
-        background: white;
-        border-bottom-color: white;
-    }
-}
 
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
