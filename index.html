@@ -6,12 +6,13 @@
     <title>DonasiKu - Platform Donasi Terpercaya</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="src/js/index.js"></script>
     <link rel="stylesheet" href="../src/css/index.css">
     <script src="/src/js/auth.js"></script>
 
 </head>
-<body x-data="{auth:true}">    
+<body x-data="{auth:false}">    
     <div x-data="{ html:'' }"
        x-init="fetch('assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
        x-html="html">
@@ -114,7 +115,6 @@
        x-init="fetch('assets/assets-pages/footer-ngaji.html').then(r=>r.text()).then(t=>html=t)"
        x-html="html">
   </div>
-<script src="../src/js/banner.js"></script>
 <script>
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -131,7 +131,6 @@
         if (menu) menu.classList.toggle('hidden');
         });
     }
-
     coba()
 </script>
 </body>

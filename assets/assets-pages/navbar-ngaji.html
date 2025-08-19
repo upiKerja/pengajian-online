@@ -21,14 +21,10 @@
             <a href="./pages/profile.html" x-show="auth" button class="profile-btn" id="profileBtn">
                 <img src="./assets/images/WhatsApp Image 2025-08-05 at 14.26.06.jpeg" alt="Profile" class="profile-img" id="profileImg">
             </a>
+            <div class="btn-group" x-show="!auth">
+            <a href="login.html" class="btn btn-primary">Login</a>
+            </div>
         </nav>
-
-        <!-- Buttons -->
-        <div class="btn-group" x-show="!auth">
-            <a href="login.html" class="btn btn-primary">Masuk</a>
-            <a href="register.html" class="btn btn-secondary">Daftar</a>
-        </div>
-
         <!-- BUTTON HAMBURGER -->
         <button
         id="hamburger"
