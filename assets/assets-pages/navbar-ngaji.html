@@ -1,109 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Navbar</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      background-color: antiquewhite;
-      font-family: sans-serif;
-    }
-    .navbar {
-      background: #FFFFFF;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    }
-    .navbar-container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
-    .logo {
-      height: 48px;
-    }
-    .profile-pic {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #16a34a;
-    }
+<link rel="stylesheet" href="/src/css/index.css">
+<!-- Header -->
+<header class="header" id="header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="DonasiKu Logo">
+        </div>
+        <h1 style="color: black;"></h1>
+        <!-- Nav -->
+        <nav class="nav">
+            <!-- Bell -->
+            <button class="bell-btn">
+                <img src="../assets/images/bell.png" alt="Notifikasi">
+            </button>
+            <!-- Menu -->
+            <a href="#Home" class="nav-link">Home</a>
+            <a href="#"class="nav-link">About</a>
+            <a href="#" class="nav-link">Campaigns</a>
+            <a href="#" class="nav-link">Contact</a> 
+            <a href="./pages/profile.html" x-show="auth" button class="profile-btn" id="profileBtn">
+                <img src="./assets/images/WhatsApp Image 2025-08-05 at 14.26.06.jpeg" alt="Profile" class="profile-img" id="profileImg">
+            </a>
+        </nav>
 
-    /* Tombol hamburger (hidden di desktop) */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 5px;
-    }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #333;
-      border-radius: 2px;
-    }
+        <!-- Buttons -->
+        <div class="btn-group" x-show="!auth">
+            <a href="login.html" class="btn btn-primary">Masuk</a>
+            <a href="register.html" class="btn btn-secondary">Daftar</a>
+        </div>
 
-    /* Mobile styles */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #fff;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        padding: 1rem;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .hamburger {
-        display: flex;
-      }
-    }
-  </style>
-</head>
-<body>
+        <!-- BUTTON HAMBURGER -->
+        <button
+        id="hamburger"
+        class="hamburger"
+        aria-label="Toggle menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        >
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+        </button>
 
-  <header class="navbar">
-    <div class="navbar-container">
-      <img src="../../assets/images/logo.png" alt="Logo" class="logo">
-
-      <!-- Tombol Hamburger -->
-      <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <!-- Menu -->
-      <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Campaign</a>
-        <a href="#">Kelas</a>
-        <a href="#">Donate</a>
-        <img src="../images/logo.png" alt="Profile" class="profile-pic">
-      </nav>
+        <!-- (Opsional) TARGET MENU -->
+        <nav id="mobile-menu" class="menu hidden" role="navigation">
+            <div x-show="!auth">
+                <a href="login.html" class="btn btn-primary">Masuk</a>
+                <a href="register.html" class="btn btn-secondary">Daftar</a>
+            </div>
+            <a href="/pages/profile.html" x-show="auth" class="nav-link" button class="profile-btn" id="profileBtn">
+               <img src="./assets/images/WhatsApp Image 2025-08-05 at 14.26.06.jpeg" alt="Profile" class="profile-img" id="profileImg">Profile</a>
+            <a href="#Home" class="nav-link">Home</a>
+            <a href="#"class="nav-link">About</a>
+            <a href="#" class="nav-link">Campaigns</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
     </div>
-  </header>
-
-</body>
-</html>
+</header>
