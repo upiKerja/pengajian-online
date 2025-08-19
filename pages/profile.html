@@ -5,8 +5,6 @@
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="../src/css/profile.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="/src/js/auth.js"></script>
 </head>
 <body>
     <div class="container">
@@ -15,10 +13,10 @@
         <div class="bg-circle"></div>
 
         <!-- Header -->
-        <div class="header">
+        <a href="../index.html"class="header">
             <div class="back-btn" onclick="goBack()"></div>
-            <h1 class="page-title">Profil</h1>
-        </div>
+            <h1 class="page-title">Profile</h1>
+        </div></a>
 
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
@@ -29,11 +27,11 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Profile Section -->
-            <section x-data="{user: window.user.user_metadata}" class="profile-section" id="profile-section">
+            <section class="profile-section" id="profile-section">
                 <div class="profile-header">
-                    <img class="profile-image" x-bind:src="user.avatar_url" alt="Profile Picture">
+                    <img class="profile-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='75' fill='%23e0e0e0'/%3E%3Cpath d='M75 75c13.8 0 25-11.2 25-25S88.8 25 75 25 50 36.2 50 50s11.2 25 25 25zm0 12.5c-16.7 0-50 8.35-50 25v12.5h100v-12.5c0-16.65-33.3-25-50-25z' fill='%23999'/%3E%3C/svg%3E" alt="Profile Picture">
                     <button class="photo-btn" onclick="selectPhoto()">Pilih Foto</button>
-                    <h2 class="user-name" x-text="user.nickname"></h2>
+                    <h2 class="user-name">John Doe</h2>
                     <p class="user-role">Member</p>
                 </div>
 
@@ -41,18 +39,18 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Nama Depan</label>
-                            <input type="text" class="form-input" x-bind:value="user.nickname.split(' ')[0]" required>
+                            <input type="text" class="form-input" value="John" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Nama Belakang</label>
-                            <input type="text" class="form-input" x-bind:value="user.nickname.split(' ')[1]" required>
+                            <input type="text" class="form-input" value="Doe" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group full-width">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-input" x-bind:value="user.email" required>
+                            <input type="email" class="form-input" value="johndoe@gmail.com" required>
                         </div>
                     </div>
 
@@ -64,7 +62,7 @@
                                     <div class="flag-icon"></div>
                                     <span class="country-code-text">+62</span>
                                 </div>
-                                <input type="tel" style="border: none; outline: none; flex: 1; font-size: 20px;" value="" >
+                                <input type="tel" style="border: none; outline: none; flex: 1; font-size: 20px;" value="81234567890" required>
                             </div>
                         </div>
                     </div>
