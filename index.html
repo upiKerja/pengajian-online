@@ -8,12 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="src/js/index.js"></script>
-    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="../src/css/index.css">
     <script src="/src/js/auth.js"></script>
-
 </head>
-<<<<<<< HEAD
-<body x-data="{auth:false}">    
+<body x-data="{auth:true}">    
     <div x-data="{ html:'' }"
        x-init="fetch('assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
        x-html="html">
@@ -21,13 +19,12 @@
     <main class="main-content">
         <!-- Banner Section -->
         <div class="banner-section" id="Home">
-            <img src="./assets/images/banner.png" 
+            <img src="../assets/images/banner.png" 
                  alt="Donation ceremony" 
                  class="banner-image">
             <div class="banner-overlay">
             </div>
         </div>
-        
         <!-- Stats -->
         <div class="stats-section">
             <div class="stat-card">
@@ -53,7 +50,7 @@
                     <!-- Kelas Mengaji -->
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="./assets/images/buku.png" alt="Kelas Mengaji">
+                            <img src="../assets/images/buku.png" alt="Kelas Mengaji">
                         </div>
                         <p class="feature-label">Kelas Mengaji</p>
                     </div>
@@ -61,7 +58,7 @@
                     <!-- Zakat -->
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="./assets/images/zakat.png" alt="Zakat">
+                            <img src="../assets/images/zakat.png" alt="Zakat">
                         </div>
                         <p class="feature-label">Zakat</p>
                     </div>
@@ -69,7 +66,7 @@
                     <!-- Donasi -->
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <img src="./assets/images/kotak.png" alt="Donasi">
+                            <img src="../assets/images/kotak.png" alt="Donasi">
                         </div>
                         <p class="feature-label">Donasi</p>
                     </div>
