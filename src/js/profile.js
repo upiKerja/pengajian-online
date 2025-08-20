@@ -4,7 +4,7 @@
             document.querySelectorAll('.profile-section, .mentor-section').forEach(section => {
                 section.classList.remove('active');
                 if (section.id === 'profile-section') {
-                    section.style.display = sectionName === 'profile' ? 'block' : 'none';
+                    section.style.display = sectionName === 'profile' ? 'flex' : 'none';
                 }
                 if (section.id === 'mentor-section') {
                     section.classList.toggle('active', sectionName === 'mentor');
