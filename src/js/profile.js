@@ -57,4 +57,15 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             showSection('profile');
+            const container = document.getElementById('profileContainer');
+            const overlay = document.getElementById('overlay');
+            
+            // Start the initial animation
+            overlay.classList.add('show-initially');
+            
+            // After animation completes, enable hover functionality
+            setTimeout(() => {
+                overlay.classList.remove('show-initially');
+                container.classList.add('hover-enabled');
+            }, 2000); // 4 seconds to match the animation duration
         });
