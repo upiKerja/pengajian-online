@@ -13,7 +13,7 @@
 </head>
 <body x-data="{auth:true}">    
     <div x-data="{ html:'' }"
-       x-init="fetch('assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
+       x-init="fetch('/src/assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
        x-html="html">
     </div>
     <main class="main-content">
@@ -110,7 +110,7 @@
     </main>
     <!-- FOOTER -->
   <div x-data="{ html:'' }"
-       x-init="fetch('assets/assets-pages/footer-ngaji.html').then(r=>r.text()).then(t=>html=t)"
+       x-init="fetch('/src/assets/assets-pages/footer-ngaji.html').then(r=>r.text()).then(t=>html=t)"
        x-html="html">
   </div>
 <script>

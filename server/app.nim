@@ -17,4 +17,5 @@ var app = newApp(settings = settings)
 
 app.use(staticFileMiddleware("/src"))
 app.addRoute(urls.indexPatterns, "/")
+app.addRoute(urls.kelasPatterns, "/kelas")
 app.run()
