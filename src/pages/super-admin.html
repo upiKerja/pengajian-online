@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin - Pengajian Online</title>
+    <link rel="stylesheet" href="../css/super-admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Kajian</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-page="dashboard">
+                        <span>Dashboard</span>
+                    </li>
+                    <li class="nav-item" data-page="kelas-online">
+                        <span>Manage Kelas Online</span>
+                    </li>
+                    <li class="nav-item" data-page="kajian">
+                        <span>Manage Kajian</span>
+                    </li>
+                    <li class="nav-item" data-page="sedekah">
+                        <span>Manage Sedekah</span>
+                    </li>
+                    <li class="nav-item" data-page="mentor">
+                        <span>Manage Mentor</span>
+                    </li>
+                    <li class="nav-item" data-page="customer">
+                        <span>Manage Customer</span>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-profile">
+                <div class="profile-avatar" onclick="showProfileModal()">
+                    <img id="profile-image" src="" alt="Profile" onerror="this.style.display='none'">
+                    <i class="fas fa-user" id="profile-icon"></i>
+                    <div class="profile-avatar-overlay">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h4 id="profile-name">Admin</h4>
+                    <p id="profile-email">admin@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="content-header">
+                <h1 id="page-title">Dashboard</h1>
+                <button class="logout-btn">Logout</button>
+            </div>
+
+            <!-- Dashboard Page -->
+            <div class="page-content" id="dashboard-page">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Kelas</h3>
+                            <p class="stat-number" id="total-kelas">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Kajian</h3>
+                            <p class="stat-number" id="total-kajian">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon yellow">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Donasi</h3>
+                            <p class="stat-number" id="total-donasi">Rp 0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pengguna</h3>
+                            <p class="stat-number" id="total-pengguna">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activities">
+                    <h3>Kegiatan Terbaru</h3>
+                    <div class="activity-list" id="activity-list">
+                        <div class="no-activity">
+                            <p>Belum ada aktivitas terbaru</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kelas Online Page -->
+            <div class="page-content hidden" id="kelas-online-page">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showAddModal('kelas-online')"><i class="fas fa-plus"></i> + Tambah Kelas</button>
+                    <button class="btn btn-warning" onclick="showEditModal('kelas-online')" disabled id="edit-kelas-btn">Edit</button>
+                    <button class="btn btn-danger" onclick="showDeleteModal('kelas-online')" disabled id="delete-kelas-btn">Hapus</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="kelas-table">
+                        <thead>
+                            <tr>
+                                <th>NAMA KELAS</th>
+                                <th>MENTOR</th>
+                                <th>SKEDULE</th>
+                                <th>PARTISIPASI</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kelas-tbody">
+                            <!-- Data akan diisi secara dinamis -->
+                        </tbody>
+                    </table>
+                    <div class="no-data" id="no-kelas-data">
+                        <p>Belum ada data kelas online</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kajian Page -->
+            <div class="page-content hidden" id="kajian-page">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showAddModal('kajian')"><i class="fas fa-plus"></i> + Tambah Kajian</button>
+                    <button class="btn btn-warning" onclick="showEditModal('kajian')" disabled id="edit-kajian-btn">Edit</button>
+                    <button class="btn btn-danger" onclick="showDeleteModal('kajian')" disabled id="delete-kajian-btn">Hapus</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="kajian-table">
+                        <thead>
+                            <tr>
+                                <th>JUDUL KAJIAN</th>
+                                <th>PENGISI ACARA</th>
+                                <th>TENGGAT WAKTU</th>
+                                <th>LOKASI</th>
+                            </tr>
+                        </thead>
+                        <tbody id="kajian-tbody">
+                            <!-- Data akan diisi secara dinamis -->
+                        </tbody>
+                    </table>
+                    <div class="no-data" id="no-kajian-data">
+                        <p>Belum ada data kajian</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sedekah Page -->
+            <div class="page-content hidden" id="sedekah-page">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showAddModal('sedekah')"><i class="fas fa-plus"></i> + Tambah Program</button>
+                    <button class="btn btn-warning" onclick="showEditModal('sedekah')" disabled id="edit-sedekah-btn">Edit</button>
+                    <button class="btn btn-danger" onclick="showDeleteModal('sedekah')" disabled id="delete-sedekah-btn">Hapus</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="sedekah-table">
+                        <thead>
+                            <tr>
+                                <th>PROGRAM</th>
+                                <th>TARGET</th>
+                                <th>TERKUMPUL</th>
+                                <th>DONATUR</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sedekah-tbody">
+                            <!-- Data akan diisi secara dinamis -->
+                        </tbody>
+                    </table>
+                    <div class="no-data" id="no-sedekah-data">
+                        <p>Belum ada data program sedekah</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mentor Page -->
+            <div class="page-content hidden" id="mentor-page">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showAddModal('mentor')"><i class="fas fa-plus"></i> + Tambah Mentor</button>
+                    <button class="btn btn-warning" onclick="showEditModal('mentor')" disabled id="edit-mentor-btn">Edit</button>
+                    <button class="btn btn-danger" onclick="showDeleteModal('mentor')" disabled id="delete-mentor-btn">Hapus</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="mentor-table">
+                        <thead>
+                            <tr>
+                                <th>NAMA</th>
+                                <th>SPESIALIS</th>
+                                <th>EMAIL</th>
+                                <th>NOMOR TELEPON</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mentor-tbody">
+                            <!-- Data akan diisi secara dinamis -->
+                        </tbody>
+                    </table>
+                    <div class="no-data" id="no-mentor-data">
+                        <p>Belum ada data mentor</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Page -->
+            <div class="page-content hidden" id="customer-page">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="showAddModal('customer')"><i class="fas fa-plus"></i> + Tambah Customer</button>
+                    <button class="btn btn-warning" onclick="showEditModal('customer')" disabled id="edit-customer-btn">Edit</button>
+                    <button class="btn btn-danger" onclick="showDeleteModal('customer')" disabled id="delete-customer-btn">Hapus</button>
+                </div>
+                <div class="table-container">
+                    <table class="admin-table" id="customer-table">
+                        <thead>
+                            <tr>
+                                <th>NAMA</th>
+                                <th>EMAIL</th>
+                                <th>NOMOR TELEPON</th>
+                                <th>STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-tbody">
+                            <!-- Data akan diisi secara dinamis -->
+                        </tbody>
+                    </table>
+                    <div class="no-data" id="no-customer-data">
+                        <p>Belum ada data customer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah/Edit -->
+    <div id="crudModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Tambah Data</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="crudForm" onsubmit="handleFormSubmit(); return false;">
+                    <div id="formFields"></div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Delete -->
+    <div id="deleteModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Konfirmasi Hapus</h2>
+                <span class="close" onclick="closeDeleteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                <p id="deleteItemInfo"></p>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Batal</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profile -->
+    <div id="profileModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <span class="close" onclick="closeProfileModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Foto Profile</label>
+                        <div class="profile-upload">
+                            <div class="profile-preview" onclick="document.getElementById('profileFileInput').click()">
+                                <img id="profilePreview" src="" alt="Preview" onerror="this.style.display='none'">
+                                <i class="fas fa-user" id="profilePreviewIcon"></i>
+                                <div class="upload-overlay">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Klik untuk ganti foto</span>
+                                </div>
+                            </div>
+                            <input type="file" id="profileFileInput" accept="image/*" style="display: none;" onchange="previewProfileImage(this)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileName">Nama</label>
+                        <input type="text" id="profileName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profileEmail">Email</label>
+                        <input type="email" id="profileEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profilePassword">Password Baru (kosongkan jika tidak ingin ganti)</label>
+                        <input type="password" id="profilePassword" name="password">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeProfileModal()">Batal</button>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/super-admin.js"></script>
+</body>
+</html>
