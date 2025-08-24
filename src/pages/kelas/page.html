@@ -54,7 +54,7 @@
         }
     </style>
 </head>
-<body x-data="{auth: false, mdata : fetch_get_data(() => 'http://localhost:8081/kelas/index/' + window.location.href.split('/')[4])}" class="bg-gray-50">
+<body x-data="{auth: false, mdata : fetch_get_data()}" class="bg-gray-50">
     <!-- Header Section -->
     <div x-data="{ html:'' }"
        x-init="fetch('/src/assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
@@ -94,7 +94,7 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4 islamic-border inline-block pb-2">Available Courses</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Learn from comprehensive courses designed by expert Islamic scholars and educators.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto">Belajar dari Mentor yang berpengalaman.</p>
             </div>
             
             <!-- Course Card -->
@@ -159,8 +159,8 @@
                         <img class="h-24 w-24 rounded-full border-4 border-green-100" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Teacher">
                         <div class="md:ml-6 mt-4 md:mt-0 text-center md:text-left">
                             <h4 class="text-xl font-bold text-gray-900" x-text="(await mdata).data.pengguna.nama_lengkap"></h4>
-                            <p class="text-green-600 font-medium">Quran & Tajweed Specialist</p>
-                            <p class="text-gray-600 mt-2">Graduate of Al-Azhar University with 15 years of teaching experience in Quran recitation and memorization.</p>
+                            <p class="text-green-600 font-medium">Quran Specialist</p>
+                            <p class="text-gray-600 mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, explicabo!</p>
                         </div>
                     </div>
                 </div>
