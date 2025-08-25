@@ -1,9 +1,15 @@
 import prologue
-import views
+import 
+  views/dash,
+  views/kelas
 
 let
   indexPatterns* = @[
-    pattern("/", views.index, @[HttpGet], name = "index"),
-    pattern("/kelas", views.kelas, @[HttpGet], name = "kelas"),
-    pattern("/profile", views.profile, @[HttpGet], name="profile")
+    pattern("/", dash.index, @[HttpGet], name = "index"),
+    pattern("/profile", profile, @[HttpGet], name = "profile")
+  ]
+  kelasPatterns* = @[
+    pattern("/", kelasIndex, @[HttpGet]),
+    pattern("/daftar", kelasDaftar, @[HttpGet]),
+    pattern("/{slug}", kelasPage, @[HttpGet])
   ]

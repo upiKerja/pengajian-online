@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: black;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.hero-text {
+  flex: 1 1 50%;
+}
+
+.hero-text h2 {
+  font-size: 24px;
+  margin: 0.5rem 0;
+}
+
+.hero-text h2 span {
+  font-weight: bold;
+}
+
+.hero-img {
+  flex: 1 1 40%;
+  text-align: center;
+}
+
+.hero-img img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+/* Metode Belajar */
+.metode {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.metode h3 {
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.metode-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.metode-card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.metode-card i {
+  margin-bottom: 0.8rem;
+  color: #22c55e;
+}
+
+/* Join Button */
+.join-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.join-btn {
+  background: #22c55e;
+  color: #fff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.join-btn:hover {
+  background: #1a9e49;
+}
+
+/* Pemateri */
+.pemateri {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pemateri h4 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.pemateri-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.nama-ustadz {
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    flex: 1 1 100%;
+  }
+
+  .hero-img {
+    flex: 1 1 100%;
+  }
+}
