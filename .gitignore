@@ -1,2 +1,5 @@
 build
 .env
+
+# JSON
+package-lock.json
