@@ -11,7 +11,7 @@ Caddy digunakan sebagai penghubung antara Frontend & Backend dengan metode rever
 ## Front End
 ### Set Up
 ```bash
-nimble install prologue
+nimble install prologue puppy
 nim c -d:release --outdir:build server/app
 ```
 
@@ -38,3 +38,4 @@ Reverse Proxy dapat dilakukan dengan Caddy atau menggunakan Cloudflare Tunnel.
 ```bash
 sudo caddy run
 ```
+
