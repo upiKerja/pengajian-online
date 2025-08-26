@@ -1,7 +1,7 @@
 async function fetch_get_data() {
-    // let slug = window.location.href.at(-1)
+    // let slug = window.location.href.split("/").at(-1)
     let slug = "akhlak-mulia-meneladani-rasulullah"
-    let url = "http://localhost:8081/kelas/index/" + slug
+    let url = "/api/kelas/index/" + slug
     try {
         const response = await axios.get(url);
         document.querySelector("#loading").classList.add("hidden")
@@ -16,7 +16,7 @@ async function fetch_get_data() {
 }
 
 async function fetch_pertemuan(id_kelas) {
-    let url = "http://localhost:8081/kelas/index/" + id_kelas
+    let url = "/api/kelas/index/" + id_kelas
     try {
         const response = await axios.get(url)
         if (response) {
@@ -25,4 +25,23 @@ async function fetch_pertemuan(id_kelas) {
     } catch (error) {
         return error 
     }
+}
+
+async function fetch_pertemuan(id_kelas) {
+    // let slug = window.location.href.split("/").at(-1)
+    let url = "/api/kelas/" + id_kelas + "/pertemuan"
+    const response = await axios.get(url)
+    return response.data
+}
+
+async function fetch_donasi() {
+    let url = "/api/donasi/" + "donasi-di-padang"
+    const response = await axios.get(url)
+    return response.data
+}
+
+async function daftar_kelas(id_kelas) {
+    let url = "/api/kelas/daftar/" + id_kelas
+    const response = await axios.post(url, { withCredentials: true })
+    alert(response.message)
 }
