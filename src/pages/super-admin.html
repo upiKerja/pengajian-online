@@ -48,381 +48,378 @@
             </div>
 
             <!-- Dashboard -->
-            <div x-show="currentPage === 'dashboard'">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon blue">📚</div>
-                        <div class="stat-info">
-                            <h3 x-text="stats.kelas"></h3>
-                            <p>Kelas</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon green">📖</div>
-                        <div class="stat-info">
-                            <h3 x-text="stats.kajian"></h3>
-                            <p>Kajian</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon yellow">💰</div>
-                        <div class="stat-info">
-                            <h3>Rp <span x-text="stats.donasi.toLocaleString()"></span></h3>
-                            <p>Donasi</p>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon purple">👥</div>
-                        <div class="stat-info">
-                            <h3 x-text="stats.pengguna.toLocaleString()"></h3>
-                            <p>Pengguna</p>
-                        </div>
-                    </div>
+           <div x-show="currentPage === 'dashboard'">
+             <div class="stats-grid">
+        <div class="dash-card">
+            <!-- Kelas -->
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <img src="../assets/icons/kelas.png" alt="Kelas">
                 </div>
-
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Kegiatan Terbaru</h3>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Kegiatan</th>
-                                <th>Tanggal</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template x-for="activity in recentActivities">
-                                <tr>
-                                    <td x-text="activity.name"></td>
-                                    <td x-text="activity.date"></td>
-                                    <td>
-                                        <span class="status-badge" :class="activity.status === 'active' ? 'status-active' : 'status-ongoing'" x-text="activity.statusText"></span>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
+                <div class="stat-info">
+                    <p>Kelas</p>
+                    <h3 x-text="stats.kelas"></h3>
                 </div>
             </div>
 
-            <!-- Manage Kelas Online -->
-            <div x-show="currentPage === 'manage-kelas-online'">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Kelas Online</h3>
-                        <div class="action-buttons">
-                            <button class="btn btn-success" @click="openModal('add-kelas')">+ Tambah Kelas</button>
-                            <button class="btn btn-primary" @click="loadKelasOnline()">Refresh</button>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama Kelas</th>
-                                <th>Mentor</th>
-                                <th>Jadwal</th>
-                                <th>Partisipasi</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody :class="{'loading': loading}">
-                            <template x-for="kelas in kelasOnline">
-                                <tr>
-                                    <td x-text="kelas.nama_kelas"></td>
-                                    <td x-text="kelas.mentor"></td>
-                                    <td x-text="kelas.jadwal"></td>
-                                    <td x-text="kelas.partisipasi"></td>
-                                    <td>
-                                        <span class="status-badge status-active" x-text="kelas.status"></span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" @click="editItem('kelas', kelas)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" @click="deleteItem('kelas', kelas.id)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
+            <!-- Kajian -->
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <img src="../assets/icons/donasi.png" alt="donasi">
+                </div>
+                <div class="stat-info">
+                    <p>Donasi</p>
+                    <h3>Rp. 1000000</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="dash-card">
+            <!-- Donasi -->
+            <div class="stat-card">
+                <div class="stat-icon yellow">
+                    <img src="../assets/icons/kajian.png" alt="kajian">
+                </div>
+                <div class="stat-info">
+                    <p>Kajian</p>
+                    <h3>17</h3>
                 </div>
             </div>
 
-            <!-- Manage Kajian -->
-            <div x-show="currentPage === 'manage-kajian'">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Kajian</h3>
-                        <div class="action-buttons">
-                            <button class="btn btn-success" @click="openModal('add-kajian')">+ Tambah Kajian</button>
-                            <button class="btn btn-primary" @click="loadKajian()">Refresh</button>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Judul Kajian</th>
-                                <th>Pengisi Acara</th>
-                                <th>Tanggal & Waktu</th>
-                                <th>Lokasi</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody :class="{'loading': loading}">
-                            <template x-for="kajian in kajianList">
-                                <tr>
-                                    <td x-text="kajian.judul_kajian"></td>
-                                    <td x-text="kajian.pengisi_acara"></td>
-                                    <td x-text="kajian.tanggal_waktu"></td>
-                                    <td x-text="kajian.lokasi"></td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" @click="editItem('kajian', kajian)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" @click="deleteItem('kajian', kajian.id)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
+            <!-- Pengguna -->
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <img src="../assets/icons/pengguna.png" alt="Pengguna">
                 </div>
-            </div>
-
-            <!-- Manage Sedekah -->
-            <div x-show="currentPage === 'manage-sedekah'">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Program Sedekah</h3>
-                        <div class="action-buttons">
-                            <button class="btn btn-success" @click="openModal('add-sedekah')">+ Tambah Sedekah</button>
-                            <button class="btn btn-primary" @click="loadSedekah()">Refresh</button>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Program</th>
-                                <th>Target</th>
-                                <th>Terkumpul</th>
-                                <th>Donatur</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody :class="{'loading': loading}">
-                            <template x-for="sedekah in sedekahList">
-                                <tr>
-                                    <td x-text="sedekah.program"></td>
-                                    <td>Rp <span x-text="sedekah.target.toLocaleString()"></span></td>
-                                    <td>Rp <span x-text="sedekah.terkumpul.toLocaleString()"></span></td>
-                                    <td x-text="sedekah.donatur"></td>
-                                    <td>
-                                        <span class="status-badge status-ongoing" x-text="sedekah.status"></span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" @click="editItem('sedekah', sedekah)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" @click="deleteItem('sedekah', sedekah.id)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Manage Mentor -->
-            <div x-show="currentPage === 'manage-mentor'">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Mentor</h3>
-                        <div class="action-buttons">
-                            <button class="btn btn-success" @click="openModal('add-mentor')">+ Tambah Mentor</button>
-                            <button class="btn btn-primary" @click="loadMentor()">Refresh</button>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Spesialis</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody :class="{'loading': loading}">
-                            <template x-for="mentor in mentorList">
-                                <tr>
-                                    <td x-text="mentor.nama"></td>
-                                    <td x-text="mentor.spesialis"></td>
-                                    <td x-text="mentor.email"></td>
-                                    <td x-text="mentor.nomor_telepon"></td>
-                                    <td>
-                                        <span class="status-badge status-active" x-text="mentor.status"></span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" @click="editItem('mentor', mentor)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" @click="deleteItem('mentor', mentor.id)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Manage Customer -->
-            <div x-show="currentPage === 'manage-customer'">
-                <div class="data-table">
-                    <div class="table-header">
-                        <h3>Customer</h3>
-                        <div class="action-buttons">
-                            <button class="btn btn-primary" @click="loadCustomer()">Refresh</button>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th>Nomor Telepon</th>
-                                <th>Status</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody :class="{'loading': loading}">
-                            <template x-for="customer in customerList">
-                                <tr>
-                                    <td x-text="customer.nama"></td>
-                                    <td x-text="customer.email"></td>
-                                    <td x-text="customer.nomor_telepon"></td>
-                                    <td>
-                                        <span class="status-badge status-active" x-text="customer.status"></span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-warning btn-sm" @click="editItem('customer', customer)">Edit</button>
-                                        <button class="btn btn-danger btn-sm" @click="deleteItem('customer', customer.id)">Hapus</button>
-                                    </td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
+                <div class="stat-info">
+                    <p>Pengguna</p>
+                    <h3 x-text="stats.pengguna.toLocaleString()"></h3>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Modal -->
-    <div class="modal" :class="{'show': showModal}">
-        <div class="modal-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <h3 x-text="modalTitle"></h3>
-                <button @click="closeModal()" style="background: none; border: none; font-size: 20px; cursor: pointer;">&times;</button>
+</div>
+<div x-show="currentPage === 'dashboard'">
+    <div class="data-table">
+    <div class="table-header">
+        <h3>Kegiatan Terbaru</h3>
+    </div>
+    <table>
+        <tbody>
+            <template x-for="activity in recentActivities">
+                <tr>
+                    <td x-text="activity.name"></td>
+                    <td x-text="activity.date"></td>
+                    <td>
+                        <span class="status-badge" :class="activity.status === 'active' ? 'status-active' : 'status-ongoing'" x-text="activity.statusText"></span>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+        <!-- Manage Kelas Online -->
+        <div x-show="currentPage === 'manage-kelas-online'">
+            <div class="data-table">
+                <div class="table-header"  id="biarapa">
+                    <div class="action-buttons">
+                        <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                        <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nama Kelas</th>
+                            <th>Mentor</th>
+                            <th>skedule</th>
+                            <th>Partisipasi</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody :class="{'loading': loading}">
+                        <template x-for="kelas in kelasOnline">
+                            <tr>
+                                <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                                <td x-text="kelas.nama_kelas"></td>
+                                <td x-text="kelas.mentor"></td>
+                                <td x-text="kelas.jadwal"></td>
+                                <td x-text="kelas.partisipasi"></td>
+                                <td>
+                                    <span class="status-badge status-active" x-text="kelas.status"></span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
             </div>
-            
-            <form @submit.prevent="submitForm()">
-                <div x-show="modalType.includes('kelas')">
-                    <div class="form-group">
-                        <label>Nama Kelas</label>
-                        <input type="text" x-model="formData.nama_kelas" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Mentor</label>
-                        <select x-model="formData.mentor" required>
-                            <option value="">Pilih Mentor</option>
-                            <template x-for="mentor in mentorList">
-                                <option :value="mentor.nama" x-text="mentor.nama"></option>
-                            </template>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Jadwal</label>
-                        <input type="datetime-local" x-model="formData.jadwal" required>
-                    </div>
-                </div>
+        </div>
 
-                <div x-show="modalType.includes('kajian')">
-                    <div class="form-group">
-                        <label>Judul Kajian</label>
-                        <input type="text" x-model="formData.judul_kajian" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Pengisi Acara</label>
-                        <select x-model="formData.pengisi_acara" required>
-                            <option value="">Pilih Mentor</option>
-                            <template x-for="mentor in mentorList">
-                                <option :value="mentor.nama" x-text="mentor.nama"></option>
-                            </template>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal & Waktu</label>
-                        <input type="datetime-local" x-model="formData.tanggal_waktu" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Lokasi</label>
-                        <input type="text" x-model="formData.lokasi" required>
+        <!-- Manage Kajian -->
+        <div x-show="currentPage === 'manage-kajian'">
+            <div class="data-table">
+                <div class="table-header" id="biarapa">
+                    <div class="action-buttons">
+                        <button class="btn btn-success" @click="openModal('add-kajian')">+ Tambah Kajian</button>
+                         <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                        <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
                     </div>
                 </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Judul Kajian</th>
+                            <th>Pengisi Acara</th>
+                            <th>Tanggal & Waktu</th>
+                            <th>Lokasi</th>
+                        </tr>
+                    </thead>
+                    <tbody :class="{'loading': loading}">
+                        <template x-for="kajian in kajianList">
+                            <tr>
+                                <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                                <td x-text="kajian.judul_kajian"></td>
+                                <td x-text="kajian.pengisi_acara"></td>
+                                <td x-text="kajian.tanggal_waktu"></td>
+                                <td x-text="kajian.lokasi"></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div x-show="modalType.includes('sedekah')">
-                    <div class="form-group">
-                        <label>Program</label>
-                        <input type="text" x-model="formData.program" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Target (Rp)</label>
-                        <input type="number" x-model="formData.target" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Terkumpul (Rp)</label>
-                        <input type="number" x-model="formData.terkumpul">
+        <!-- Manage Sedekah -->
+        <div x-show="currentPage === 'manage-sedekah'">
+            <div class="data-table">
+                <div class="table-header" id="biarapa"> 
+                    <div class="action-buttons">
+                        <button class="btn btn-success" @click="openModal('add-sedekah')">+ Tambah Sedekah</button>
+                        <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                        <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
                     </div>
                 </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Program</th>
+                            <th>Target</th>
+                            <th>Terkumpul</th>
+                            <th>Donatur</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody :class="{'loading': loading}">
+                        <template x-for="sedekah in sedekahList">
+                            <tr>
+                                <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                                <td x-text="sedekah.program"></td>
+                                <td>Rp <span x-text="sedekah.target.toLocaleString()"></span></td>
+                                <td>Rp <span x-text="sedekah.terkumpul.toLocaleString()"></span></td>
+                                <td x-text="sedekah.donatur"></td>
+                                <td>
+                                    <span class="status-badge status-ongoing" x-text="sedekah.status"></span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div x-show="modalType.includes('mentor')">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" x-model="formData.nama" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Spesialis</label>
-                        <input type="text" x-model="formData.spesialis" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" x-model="formData.email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Nomor Telepon</label>
-                        <input type="tel" x-model="formData.nomor_telepon" required>
+        <!-- Manage Mentor -->
+        <div x-show="currentPage === 'manage-mentor'">
+            <div class="data-table">
+                <div class="table-header" id="biarapa"> 
+                    <div class="action-buttons">
+                        <button class="btn btn-success" @click="openModal('add-mentor')">+ Tambah Mentor</button>
+                        <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                        <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
                     </div>
                 </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nama</th>
+                            <th>Spesialis</th>
+                            <th>Email</th>
+                            <th>Nomor Telepon</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody :class="{'loading': loading}">
+                        <template x-for="mentor in mentorList">
+                            <tr>
+                                <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                                <td x-text="mentor.nama"></td>
+                                <td x-text="mentor.spesialis"></td>
+                                <td x-text="mentor.email"></td>
+                                <td x-text="mentor.nomor_telepon"></td>
+                                <td>
+                                    <span class="status-badge status-active" x-text="mentor.status"></span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div x-show="modalType.includes('customer')">
-                    <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" x-model="formData.nama" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" x-model="formData.email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Nomor Telepon</label>
-                        <input type="tel" x-model="formData.nomor_telepon" required>
+        <!-- Manage Customer -->
+        <div x-show="currentPage === 'manage-customer'">
+            <div class="data-table">
+                <div class="table-header" id="biarapa">
+                    <div class="action-buttons">
+                        <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                        <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
                     </div>
                 </div>
-
-                <div style="display: flex; gap: 10px; justify-content: end; margin-top: 20px;">
-                    <button type="button" class="btn btn-secondary" @click="closeModal()">Batal</button>
-                    <button type="submit" class="btn btn-success" :disabled="loading">
-                        <span x-show="!loading">Simpan</span>
-                        <span x-show="loading">Loading...</span>
-                    </button>
-                </div>
-            </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor Telepon</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody :class="{'loading': loading}">
+                        <template x-for="customer in customerList">
+                            <tr>
+                                <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                                <td x-text="customer.nama"></td>
+                                <td x-text="customer.email"></td>
+                                <td x-text="customer.nomor_telepon"></td>
+                                <td>
+                                    <span class="status-badge status-active" x-text="customer.status"></span>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" :class="{'show': showModal}">
+    <div class="modal-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 x-text="modalTitle"></h3>
+            <button @click="closeModal()" style="background: none; border: none; font-size: 20px; cursor: pointer;">&times;</button>
+        </div>
+        
+        <form @submit.prevent="submitForm()">
+            <div x-show="modalType.includes('kelas')">
+                <div class="form-group">
+                    <label>Nama Kelas</label>
+                    <input type="text" x-model="formData.nama_kelas" required>
+                </div>
+                <div class="form-group">
+                    <label>Mentor</label>
+                    <select x-model="formData.mentor" required>
+                        <option value="">Pilih Mentor</option>
+                        <template x-for="mentor in mentorList">
+                            <option :value="mentor.nama" x-text="mentor.nama"></option>
+                        </template>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Jadwal</label>
+                    <input type="datetime-local" x-model="formData.jadwal" required>
+                </div>
+            </div>
+
+            <div x-show="modalType.includes('kajian')">
+                <div class="form-group">
+                    <label>Judul Kajian</label>
+                    <input type="text" x-model="formData.judul_kajian" required>
+                </div>
+                <div class="form-group">
+                    <label>Pengisi Acara</label>
+                    <select x-model="formData.pengisi_acara" required>
+                        <option value="">Pilih Mentor</option>
+                        <template x-for="mentor in mentorList">
+                            <option :value="mentor.nama" x-text="mentor.nama"></option>
+                        </template>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tanggal & Waktu</label>
+                    <input type="datetime-local" x-model="formData.tanggal_waktu" required>
+                </div>
+                <div class="form-group">
+                    <label>Lokasi</label>
+                    <input type="text" x-model="formData.lokasi" required>
+                </div>
+            </div>
+
+            <div x-show="modalType.includes('sedekah')">
+                <div class="form-group">
+                    <label>Program</label>
+                    <input type="text" x-model="formData.program" required>
+                </div>
+                <div class="form-group">
+                    <label>Target (Rp)</label>
+                    <input type="number" x-model="formData.target" required>
+                </div>
+                <div class="form-group">
+                    <label>Terkumpul (Rp)</label>
+                    <input type="number" x-model="formData.terkumpul">
+                </div>
+            </div>
+
+            <div x-show="modalType.includes('mentor')">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" x-model="formData.nama" required>
+                </div>
+                <div class="form-group">
+                    <label>Spesialis</label>
+                    <input type="text" x-model="formData.spesialis" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" x-model="formData.email" required>
+                </div>
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="tel" x-model="formData.nomor_telepon" required>
+                </div>
+            </div>
+
+            <div x-show="modalType.includes('customer')">
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text" x-model="formData.nama" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" x-model="formData.email" required>
+                </div>
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="tel" x-model="formData.nomor_telepon" required>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; justify-content: end; margin-top: 20px;">
+                <button type="button" class="btn btn-secondary" @click="closeModal()">Batal</button>
+                <button type="submit" class="btn btn-success" :disabled="loading">
+                    <span x-show="!loading">Simpan</span>
+                    <span x-show="loading">Loading...</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
     <script src="../js/super-admin.js"></script>
 </html>
