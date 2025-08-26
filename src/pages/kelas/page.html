@@ -93,7 +93,7 @@
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4 islamic-border inline-block pb-2">Available Courses</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-green-800 mb-4 islamic-border inline-block pb-2">Daftar dengan Donasi</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Belajar dari Mentor yang berpengalaman.</p>
             </div>
             
@@ -141,7 +141,7 @@
                         
                         <div class="mt-6">
                             <button class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-medium transition duration-300">
-                                <i class="fas fa-book-reader mr-2"></i> Daftar Sekarang
+                                <i class="fas fa-book-reader mr-2"></i> Donasi Sekarang
                             </button>
                         </div>
                     </div>
@@ -174,100 +174,22 @@
                 
                 <div class="space-y-4">
                     <!-- Meeting 1 -->
-                    <div class="bg-white rounded-lg shadow-md p-4 meeting-item transition duration-300">
-                        <div class="flex items-start">
-                            <div class="bg-green-100 text-green-800 rounded-full p-3 mr-4">
-                                <i class="fas fa-play-circle text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-gray-900">Introduction to Tajweed</h4>
-                                <p class="text-gray-600 text-sm">Learn the basic rules of proper Quran recitation</p>
-                                <div class="mt-2 flex flex-wrap items-center text-sm text-gray-500">
-                                    <span class="flex items-center mr-4">
-                                        <i class="far fa-calendar mr-1"></i> June 15, 2023
-                                    </span>
-                                    <span class="flex items-center">
-                                        <i class="far fa-clock mr-1"></i> 7:00 PM - 8:30 PM
-                                    </span>
+                    <template x-for="pertemuan in (await fetch_pertemuan((await mdata).data.id_kelas)).data">
+                        <div class="bg-white rounded-lg shadow-md p-4 meeting-item transition duration-300">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 text-green-800 rounded-full p-3 mr-4">
+                                    <i class="fas fa-play-circle text-xl"></i>
                                 </div>
-                            </div>
-                            <button class="ml-4 bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300">
-                                Join
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Meeting 2 -->
-                    <div class="bg-white rounded-lg shadow-md p-4 meeting-item transition duration-300">
-                        <div class="flex items-start">
-                            <div class="bg-green-100 text-green-800 rounded-full p-3 mr-4">
-                                <i class="fas fa-book text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-gray-900">Makharij al-Huruf (Articulation Points)</h4>
-                                <p class="text-gray-600 text-sm">Understanding where each Arabic letter originates</p>
-                                <div class="mt-2 flex flex-wrap items-center text-sm text-gray-500">
-                                    <span class="flex items-center mr-4">
-                                        <i class="far fa-calendar mr-1"></i> June 22, 2023
-                                    </span>
-                                    <span class="flex items-center">
-                                        <i class="far fa-clock mr-1"></i> 7:00 PM - 8:30 PM
-                                    </span>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-gray-900" x-text="pertemuan.judul"></h4>
+                                    <p class="text-gray-600 text-sm" x-text="pertemuan.deskripsi"></p>
                                 </div>
+                                <button class="ml-4 bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded-lg text-sm font-medium transition duration-300">
+                                    Join
+                                </button>
                             </div>
-                            <button class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-700 py-1 px-3 rounded-lg text-sm font-medium transition duration-300">
-                                Upcoming
-                            </button>
                         </div>
-                    </div>
-                    
-                    <!-- Meeting 3 -->
-                    <div class="bg-white rounded-lg shadow-md p-4 meeting-item transition duration-300">
-                        <div class="flex items-start">
-                            <div class="bg-green-100 text-green-800 rounded-full p-3 mr-4">
-                                <i class="fas fa-book text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-gray-900">Sifat al-Huruf (Characteristics)</h4>
-                                <p class="text-gray-600 text-sm">Learning the characteristics of Arabic letters</p>
-                                <div class="mt-2 flex flex-wrap items-center text-sm text-gray-500">
-                                    <span class="flex items-center mr-4">
-                                        <i class="far fa-calendar mr-1"></i> June 29, 2023
-                                    </span>
-                                    <span class="flex items-center">
-                                        <i class="far fa-clock mr-1"></i> 7:00 PM - 8:30 PM
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-700 py-1 px-3 rounded-lg text-sm font-medium transition duration-300">
-                                Upcoming
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Meeting 4 -->
-                    <div class="bg-white rounded-lg shadow-md p-4 meeting-item transition duration-300">
-                        <div class="flex items-start">
-                            <div class="bg-green-100 text-green-800 rounded-full p-3 mr-4">
-                                <i class="fas fa-book text-xl"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-gray-900">Rules of Noon Sakinah & Tanween</h4>
-                                <p class="text-gray-600 text-sm">Mastering Izhar, Idgham, Iqlab, and Ikhfa</p>
-                                <div class="mt-2 flex flex-wrap items-center text-sm text-gray-500">
-                                    <span class="flex items-center mr-4">
-                                        <i class="far fa-calendar mr-1"></i> July 6, 2023
-                                    </span>
-                                    <span class="flex items-center">
-                                        <i class="far fa-clock mr-1"></i> 7:00 PM - 8:30 PM
-                                    </span>
-                                </div>
-                            </div>
-                            <button class="ml-4 bg-gray-200 hover:bg-gray-300 text-gray-700 py-1 px-3 rounded-lg text-sm font-medium transition duration-300">
-                                Upcoming
-                            </button>
-                        </div>
-                    </div>
+                    </template>
                 </div>
             </div>
         </div>
