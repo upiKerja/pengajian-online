@@ -18,7 +18,7 @@ proc kelasPage*(ctx: Context) {.async.} =
     var
         slug = ctx.getPathParams("slug")
         ball = puppy.get(
-            fmt"http://localhost:8081/kelas/meta/{slug}")
+            fmt"http://localhost/api/kelas/meta/{slug}")
         sukamto = parseJson ball.body
 
     if sukamto["data"].len > 0:
