@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Kajian - Belajar Ngaji Online</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <link rel="stylesheet" href="/src/css/super-admin.css">
+
+</head>
+    <body x-data="adminSystem()">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            Admin Kajian
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="/admin/manage/kelas">Manage Kelas Online</a></li>
+            <li><a href="/admin/manage/kajian">Manage Kajian</a></li>
+            <li><a href="/admin/manage/sedekah">Manage Sedekah</a></li>
+            <li><a href="/admin/manage/mentor">Manage Mentor</a></li>
+        </ul>
+        <div class="admin-info">
+            <div class="admin-avatar"></div>
+            <div class="admin-details">
+                <p><strong>Admin</strong></p>
+                <p>admin@gmail.com</p>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h1 x-text="getPageTitle()"></h1>
+            <button class="logout-btn" @click="logout()">Logout</button>
+        </div>        
+        $adminContent
+    </div>
+
+    <script src="/src/js/super-admin.js"></script>
+    <body>
+</html>

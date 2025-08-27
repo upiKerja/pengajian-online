@@ -1,0 +1,37 @@
+<div id="upi-1" upi-title="Manage Sedekah">
+    <div class="data-table">
+        <div class="table-header" id="biarapa"> 
+            <div class="action-buttons">
+                <button class="btn btn-success" @click="openModal('add-sedekah')">+ Tambah Sedekah</button>
+                <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Program</th>
+                    <th>Target</th>
+                    <th>Terkumpul</th>
+                    <th>Donatur</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody :class="{'loading': loading}">
+                <template x-for="sedekah in sedekahList">
+                    <tr>
+                        <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                        <td x-text="sedekah.program"></td>
+                        <td>Rp <span x-text="sedekah.target.toLocaleString()"></span></td>
+                        <td>Rp <span x-text="sedekah.terkumpul.toLocaleString()"></span></td>
+                        <td x-text="sedekah.donatur"></td>
+                        <td>
+                            <span class="status-badge status-ongoing" x-text="sedekah.status"></span>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
