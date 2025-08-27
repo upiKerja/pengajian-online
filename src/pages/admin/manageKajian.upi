@@ -1,0 +1,39 @@
+<script>
+    async function fetch_data() {
+        return (await axios.get('/api/kajian/discover')).data
+    }
+</script>
+
+<div id="upi-1" upi-title="Manage Kajian">
+    <div class="data-table">
+        <div class="table-header" id="biarapa">
+            <div class="action-buttons">
+                <button class="btn btn-success" @click="openModal('add-kajian')">+ Tambah Kajian</button>
+                    <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Judul Kajian</th>
+                    <th>Pengisi Acara</th>
+                    <th>Tanggal & Waktu</th>
+                    <th>Lokasi</th>
+                </tr>
+            </thead>
+            <tbody :class="{'loading': loading}" x-data="{kajianList : fetch_data()}">
+                <template x-for="kajian in (await kajianList).data">
+                    <tr>
+                        <td><input type="radio" :value="kajian.id_kajian"></td>
+                        <td x-text="kajian.judul"></td>
+                        <td x-text="kajian.pemateri"></td>
+                        <td x-text="cetak_tenggal(kajian.tanggal)"></td>
+                        <td x-text="kajian.lokasi"></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>    

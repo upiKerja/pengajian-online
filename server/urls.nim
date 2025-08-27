@@ -1,7 +1,9 @@
 import prologue
 import 
   views/dash,
-  views/kelas
+  views/kelas,
+  views/admin,
+  views/manage
 
 let
   indexPatterns* = @[
@@ -10,6 +12,15 @@ let
   ]
   kelasPatterns* = @[
     pattern("/", kelasIndex, @[HttpGet]),
-    pattern("/daftar", kelasDaftar, @[HttpGet]),
     pattern("/{slug}", kelasPage, @[HttpGet])
+  ]
+  adminPatterns* = @[
+    pattern("/manage/kajian", adminManageKajian, @[HttpGet]),
+    pattern("/manage/kelas", adminManageKelas, @[HttpGet]),
+    pattern("/manage/mentor", adminManageMentor, @[HttpGet]),
+    pattern("/manage/sedekah", adminManageSedekah, @[HttpGet]),
+    pattern("/", adminIndex, @[HttpGet])
+  ]
+  managePatterns* = @[
+    pattern("/kelas/{slug}", manageKelas, @[HttpGet])
   ]

@@ -7,18 +7,18 @@ import strformat
 import strutils
 
 proc kelasIndex*(ctx: Context) {.async.} =
-    resp loadPrologueEnv(".env").get("rijal")
+    await ctx.staticFileResponse("index.html", "src/pages/kelas")
 
 proc kelasPage*(ctx: Context) {.async.} =
     proc myRenderProc(
         title: string,
         description: string): string =
-        compileTemplateFile("../../src/pages/kelas/page.xhtml", baseDir = getScriptDir())    
+        compileTemplateFile("../../src/pages/kelas/page.html", baseDir = getScriptDir())    
     
     var
         slug = ctx.getPathParams("slug")
         ball = puppy.get(
-            fmt"http://localhost:8081/kelas/meta/{slug}")
+            fmt"http://localhost/api/kelas/meta/{slug}")
         sukamto = parseJson ball.body
 
     if sukamto["data"].len > 0:
