@@ -2,7 +2,8 @@ import prologue
 import 
   views/dash,
   views/kelas,
-  views/admin
+  views/admin,
+  views/manage
 
 let
   indexPatterns* = @[
@@ -19,4 +20,7 @@ let
     pattern("/manage/mentor", adminManageMentor, @[HttpGet]),
     pattern("/manage/sedekah", adminManageSedekah, @[HttpGet]),
     pattern("/", adminIndex, @[HttpGet])
+  ]
+  managePatterns* = @[
+    pattern("/kelas/{slug}", manageKelas, @[HttpGet])
   ]

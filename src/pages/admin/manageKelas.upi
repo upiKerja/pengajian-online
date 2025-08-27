@@ -60,7 +60,7 @@
                 <template x-for="kelas in (await kelasData).data">
                     <tr>
                         <td><input type="radio" x-model="data_kelas" :value="[kelas.id_kelas, kelas.is_accepted]"></td>
-                        <td><a :href="'/kelas/' + kelas.slug" x-text="kelas.judul"></a></td>  
+                        <td><a :href="'/manage/kelas/' + kelas.id_kelas" x-text="kelas.judul"></a></td>  
                         <td x-text="kelas.pengguna.nama_lengkap"></td>
                         <td x-text="kelas.platform">-</td>
                         <td>
