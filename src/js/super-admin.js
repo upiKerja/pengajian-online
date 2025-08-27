@@ -1,7 +1,20 @@
+function cetak_tenggal(tanggal) {
+    const d = new Date(tanggal);
+
+    const fmt = new Intl.DateTimeFormat('id-ID', {
+        timeZone: 'Asia/Jakarta',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour12: false
+    });
+
+    return fmt.format(d); 
+}
+ 
  function adminSystem() {
             return {
                 // State Management
-                currentPage: 'dashboard',
                 loading: false,
                 showModal: false,
                 modalType: '',
@@ -41,7 +54,6 @@
 
                 setupAxiosDefaults() {
                     // Set up axios defaults for API calls
-                    axios.defaults.baseURL = 'https://api.your-domain.com'; // Replace with your API URL
                     axios.defaults.headers.common['Content-Type'] = 'application/json';
                     
                     // Add token if you have authentication
@@ -440,15 +452,7 @@
 
                 // Utility Functions
                 getPageTitle() {
-                    const titles = {
-                        'dashboard': 'Dashboard',
-                        'manage-kelas-online': 'Manage Kelas Online',
-                        'manage-kajian': 'Manage Kajian',
-                        'manage-sedekah': 'Manage Sedekah',
-                        'manage-mentor': 'Manage Mentor',
-                        'manage-customer': 'Manage Customer'
-                    };
-                    return titles[this.currentPage] || 'Dashboard';
+                    return document.querySelector("#upi-1").getAttribute("upi-title")
                 },
 
                 showAlert(message, type = 'success') {

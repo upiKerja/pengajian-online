@@ -1,6 +1,5 @@
 async function fetch_get_data() {
-    // let slug = window.location.href.split("/").at(-1)
-    let slug = "akhlak-mulia-meneladani-rasulullah"
+    let slug = window.location.href.split("/").at(-1)
     let url = "/api/kelas/index/" + slug
     try {
         const response = await axios.get(url);
@@ -28,7 +27,6 @@ async function fetch_pertemuan(id_kelas) {
 }
 
 async function fetch_pertemuan(id_kelas) {
-    // let slug = window.location.href.split("/").at(-1)
     let url = "/api/kelas/" + id_kelas + "/pertemuan"
     const response = await axios.get(url)
     return response.data

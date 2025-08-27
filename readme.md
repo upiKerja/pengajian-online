@@ -11,7 +11,7 @@ Caddy digunakan sebagai penghubung antara Frontend & Backend dengan metode rever
 ## Front End
 ### Set Up
 ```bash
-nimble install prologue puppy
+nimble install prologue puppy nimja
 nim c -d:release --outdir:build server/app
 ```
 

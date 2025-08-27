@@ -1,0 +1,37 @@
+<div id="upi-1" upi-title="Manage Mentor">
+    <div class="data-table">
+        <div class="table-header" id="biarapa"> 
+            <div class="action-buttons">
+                <button class="btn btn-success" @click="openModal('add-mentor')">+ Tambah Mentor</button>
+                <button class="btn btn-warning" @click="editSelected('kelas')">Edit</button>
+                <button class="btn btn-danger" @click="deleteSelected('kelas')">Hapus</button>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nama</th>
+                    <th>Spesialis</th>
+                    <th>Email</th>
+                    <th>Nomor Telepon</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody :class="{'loading': loading}">
+                <template x-for="mentor in mentorList">
+                    <tr>
+                        <td><input type="checkbox" x-model="selected.kelas" :value="kelas"></td>
+                        <td x-text="mentor.nama"></td>
+                        <td x-text="mentor.spesialis"></td>
+                        <td x-text="mentor.email"></td>
+                        <td x-text="mentor.nomor_telepon"></td>
+                        <td>
+                            <span class="status-badge status-active" x-text="mentor.status"></span>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</div>
