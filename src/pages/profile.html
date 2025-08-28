@@ -93,7 +93,7 @@
                         </div>
                         </div>
 
-                        <button type="submit" class="save-btn" @click="saveProfile">Simpan</button>
+                        <button type="button" class="save-btn" @click="saveProfile">Simpan</button>
                     </form>
                 </div>
 
@@ -129,11 +129,11 @@ function userData() {
         // Fetch user profile from backend
         async fetchUser() {
             try {
-                const res = await axios.get("http://localhost:8081/api/profile");
+                const res = await axios.get("/api/profile");
                 this.user = res.data;
 
                 if (this.user.foto_url) {
-                    this.user.foto_url = `http://localhost:8081/static/${this.user.foto_url}`;
+                    this.user.foto_url = `/static/${this.user.foto_url}`;
                 }
                 if (this.user.nama_lengkap) {
                     let parts = this.user.nama_lengkap.trim().split(" ");
@@ -178,7 +178,7 @@ function userData() {
 
             try {
                 const res = await axios.post(
-                    "http://localhost:8081/api/file/temp-upload",
+                    "/api/file/temp-upload",
                     formData,
                     {
                         withCredentials: true,
@@ -196,24 +196,27 @@ function userData() {
         },
 
         // Commit temp file (_temp → _pp)
-async commitTempFile() {
-  if (!this.tempProfileImage) return;
+        async commitTempFile() {
+        if (!this.tempProfileImage) return;
 
-  try {
-    const res = await axios.post(
-      "http://localhost:8081/api/file/commit-temp",
-      { filename: this.tempProfileImage }, // send temp filename
-      { withCredentials: true }
-    );
+        try {
+            const res = await axios.post(
+            "/api/file/commit-temp",
+            { filename: this.tempProfileImage }, // send temp filename
+            { withCredentials: true }
+            );
 
-    console.log("Temp file committed:", res.data);
-    this.user.foto_url = res.data.filename; // update preview to committed main file
-    this.tempProfileImage = null; // clear temp
-  } catch (err) {
-    console.error("Commit temp file failed:", err.response?.data || err.message);
-    alert("Failed to commit profile picture");
-  }
-},
+            console.log("Temp file committed:", res.data);
+            this.user.foto_url = "/static/" + res.data.filename; // update preview to committed main file
+            this.user.temp_foto_url = res.data.filename
+            this.tempProfileImage = null; // clear temp
+            
+            return res.data.filename
+        } catch (err) {
+            console.error("Commit temp file failed:", err.response?.data || err.message);
+            alert("Failed to commit profile picture");
+        }
+        },
 
         // Save profile
         async saveProfile() {
@@ -231,18 +234,17 @@ async commitTempFile() {
                     nama_lengkap: `${this.firstName} ${this.lastName}`.trim(),
                     bio: this.user.bio,
                     kontak: this.user.kontak,
-                    foto_url: this.user.foto_url // now main _pp filename
+                    foto_url: this.user.temp_foto_url
                 };
 
                 // Save profile to backend
                 const res = await axios.put(
-                    "http://localhost:8081/api/pengguna/update",
+                    "/api/pengguna/update",
                     payload,
                     { withCredentials: true }
                 );
 
                 console.log("Profile updated:", res.data);
-                alert("Profile successfully updated!");
 
             } catch (err) {
                 console.error("Save profile failed:", err.response?.data || err.message);
