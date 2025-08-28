@@ -29,7 +29,7 @@
             <li><a href="/admin">Dashboard</a></li> 
             <li><a href="/admin/manage/kelas">Manage Kelas Online</a></li>
             <li><a href="/admin/manage/kajian">Manage Kajian</a></li>
-            <li><a href="/admin/manage/sedekah">Manage Sedekah</a></li>
+            <li><a href="/admin/manage/sedekah">Manage Donasi</a></li>
             <li><a href="/admin/manage/mentor">Manage Mentor</a></li>
         </ul>
         <a href="/src/pages/profile.html">
