@@ -14,3 +14,6 @@ proc loadFromTemplate(
 
 proc manageKelas*(ctx: Context) {.async.} = 
     resp strip loadFromTemplate readAll newFileStream("src/pages/manage/kelas.upi", fmRead)
+
+proc manageSedekah*(ctx: Context) {.async.} = 
+    resp strip loadFromTemplate readAll newFileStream("src/pages/manage/sedekah.upi", fmRead)
