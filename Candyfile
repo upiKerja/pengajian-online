@@ -1,3 +1,0 @@
-:80
-    reverse_proxy /api/* :8081
-    reverse_proxy /* :8080
