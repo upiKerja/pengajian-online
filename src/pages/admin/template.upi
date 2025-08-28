@@ -26,19 +26,21 @@
             Admin Kajian
         </div>
         <ul class="sidebar-menu">
-            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="/admin">Dashboard</a></li> 
             <li><a href="/admin/manage/kelas">Manage Kelas Online</a></li>
             <li><a href="/admin/manage/kajian">Manage Kajian</a></li>
             <li><a href="/admin/manage/sedekah">Manage Sedekah</a></li>
             <li><a href="/admin/manage/mentor">Manage Mentor</a></li>
         </ul>
-        <div class="admin-info">
+        <a href="/src/pages/profile.html">
+            <div class="admin-info">
             <div class="admin-avatar"></div>
             <div class="admin-details">
                 <p><strong>Admin</strong></p>
                 <p>admin@gmail.com</p>
             </div>
         </div>
+        </a>
     </div>
     <div class="main-content">
         <div class="header">
