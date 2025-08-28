@@ -23,7 +23,9 @@ nim c -d:release --outdir:build server/app
 ## Back End
 Berada di repository terpisah: <a href="https://github.com/upiKerja/kajian-online">upiKerja/kajian-online</a>. Pastikan clone dan run pada root directory yang berbeda.
 ### Set Up
+
 ```bash
+
 npm i
 mv .env.example .env # Jangan lupa set up .env
 ```
