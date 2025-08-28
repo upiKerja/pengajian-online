@@ -23,5 +23,9 @@ let
   ]
   managePatterns* = @[
     pattern("/kelas/{slug}", manageKelas, @[HttpGet]),
-    pattern("/sedekah/{slug}", manageSedekah, @[HttpGet])
+    pattern("/sedekah/{slug}", manageSedekah, @[HttpGet]),
+    pattern("/mentor/{slug}", manageMentor, @[HttpGet])
+  ]
+  createPatterns* = @[
+    pattern("/donasi", createDonasi, @[HttpGet]),
   ]
