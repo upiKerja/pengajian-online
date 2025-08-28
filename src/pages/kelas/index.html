@@ -10,26 +10,18 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     async function get_kelas() {
-      let data = await axios.get("https://test.lahanjir.biz.id/kelas/discover", { withCredentials: true })
+      let data = await axios.get("/api/kelas/discover", { withCredentials: true })
       return data.data
     }
   </script>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <div class="navbar-container">
-      <img src="/src/assets/images/logo.png" alt="Logo" class="logo">
-      <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">{{someParam}}</a>
-        <a href="#">Kelas</a>
-        <a href="#">Donate</a>
-        <img src="/src/assets/images/logo.png" alt="Profile" class="profile-pic">
-      </nav>
-    </div>
-  </header>
+  <!-- header & navbar -->
+  <div x-data="{ html:'' }"
+    x-init="fetch('/src/assets/assets-pages/navbar-ngaji.html').then(r=>r.text()).then(t=>html=t)"
+    x-html="html">
+  </div>
 
   <!-- Hero -->
   <section class="bg-green-400 text-white py-12 md:py-20">
@@ -49,14 +41,10 @@
   <!-- Program -->
   <section class="program mt-6 mb-12" x-data="{kelass: get_kelas()}">
     <h1 class="text-2xl mb-6">PROGRAM KELAS MENGAJI</h1>
-    <!-- <p class="subtext">Pilih kelas mengaji yang diinginkan</p> -->
       <div class="">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" x-show="(await kelass).status == 200 ? true : false">
           <template x-for="kelas in (await kelass).data">
             <div class="bg-white rounded-xl overflow-hidden card-shadow">
-              <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
-                <img src="https://via.placeholder.com/400x200" alt="Foto Poster Pengajian" class="h-full w-full object-cover">
-              </div> -->
               <div class="p-6 flex flex-col justify-between h-full">
                 <div class="flex justify-between items-start mb-4">
                   <h3 class="text-lg font-bold text-gray-800" x-text="kelas.judul"></h3>
@@ -69,7 +57,7 @@
                     <p class="font-medium text-primary" x-text="kelas.pengguna.nama_lengkap"></p>
                   </div>
                   <button class="bg-blue-400 text-white px-2 py-2 rounded-lg text-sm hover:bg-secondary transition">
-                    Ikuti Kelas
+                    <a x-bind:href="'/kelas/' + kelas.slug">Ikuti Kelas</a>
                   </button>
                 </div>
               </div>
@@ -85,28 +73,10 @@
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-info">
-        <div class="footer-logo">
-          <img src="/src/assets/images/image.png" alt="Logo" class="logo">
-          <h4>PENGAJIAN ONLINE</h4>
-        </div>
-        <p>PengajianOnline.id adalah platform resmi pengajian daring Masjid Darussalam Kota Wisata,
-          untuk memudahkan jamaah mengikuti kajian Islam secara rutin, mudah, dan terpercaya.
-        </p>
-      </div>
-      <div class="footer-actions">
-        <div class="socials">
-          <a href=""><i class="fa-brands fa-facebook"></i></a>
-          <a href=""><i class="fa-brands fa-instagram"></i></a>
-          <a href=""><i class="fa-brands fa-tiktok"></i></a>
-          <a href=""><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-        <button class="contact-btn">HUBUNGI KAMI</button>
-      </div>
-    </div>
-  </footer>
+    <div x-data="{ html:'' }"
+      x-init="fetch('/src/assets/assets-pages/footer-ngaji.html').then(r=>r.text()).then(t=>html=t)"
+      x-html="html">
+  </div>
 
 </body>
 </html>
