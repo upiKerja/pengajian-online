@@ -22,5 +22,6 @@ let
     pattern("/", adminIndex, @[HttpGet])
   ]
   managePatterns* = @[
-    pattern("/kelas/{slug}", manageKelas, @[HttpGet])
+    pattern("/kelas/{slug}", manageKelas, @[HttpGet]),
+    pattern("/sedekah/{slug}", manageSedekah, @[HttpGet])
   ]
