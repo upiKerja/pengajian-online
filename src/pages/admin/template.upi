@@ -49,5 +49,6 @@
     </div>
 
     <script src="/src/js/super-admin.js"></script>
-    <body>
+    <script data-upi>$$dataUpi</script>
+</body>
 </html>

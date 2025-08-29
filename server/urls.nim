@@ -12,7 +12,7 @@ let
   ]
   kelasPatterns* = @[
     pattern("/", kelasIndex, @[HttpGet]),
-    pattern("/{slug}", kelasPage, @[HttpGet])
+    pattern("/{slug}", kelasPage, @[HttpGet]),
   ]
   adminPatterns* = @[
     pattern("/manage/kajian", adminManageKajian, @[HttpGet]),
@@ -22,5 +22,5 @@ let
     pattern("/", adminIndex, @[HttpGet])
   ]
   managePatterns* = @[
-    pattern("/kelas/{slug}", manageKelas, @[HttpGet])
+    pattern("/kelas/{id_kelas}", manageKelas, @[HttpGet])
   ]
